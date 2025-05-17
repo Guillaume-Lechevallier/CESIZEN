@@ -1,0 +1,27 @@
+<button class="sticky-button" (click)="navigate('/mes_infos_favorites')">Voir mes favoris</button>
+
+<div #postContainer class="feed">
+  <div *ngFor="let post of posts">
+    <div [attr.id]="'post-' + post.id" class="post">
+      <img [src]="post.profilePic" alt="Photo de profil">
+      <h3>{{ post.name }}</h3>
+      <p [innerHTML]="post.content"></p>
+      <small>{{ getTimeElapsed(post.timestamp) }}</small>
+
+      <div class="post-buttons">
+        <mat-icon
+          class="icon-btn"
+          [ngClass]="{ 'favorite': post.is_favorite }"
+          (click)="favorite(post)">
+          {{ post.is_favorite ? 'favorite' : 'favorite_border' }}
+        </mat-icon>
+
+        <mat-icon (click)="copyurl(post.id)" class="icon-btn">share</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <p>🔄 Chargement d'un autre post...</p>
+  </div>
+</div>

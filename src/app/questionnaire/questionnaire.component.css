@@ -1,0 +1,192 @@
+/* 🌿 Fond général - Vert doux */
+body {
+  background-color: #e8f5e9;
+  font-family: 'Arial', sans-serif;
+  color: #2e7d32;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🟢 Conteneur principal */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 📝 Titre du questionnaire */
+h2 {
+  color: #1b5e20;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* 📄 Texte des étapes et des questions */
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* 📦 Conteneur des questions */
+.question-container {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+/* 🔄 Animation fade-in uniquement pour la première question */
+.fade-in {
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ⬅ Slide OUT vers la gauche */
+.slide-out-left {
+  animation: slideOutLeft 0.5s ease-in-out forwards;
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+/* ➡ Slide OUT vers la droite */
+.slide-out-right {
+  animation: slideOutRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* ⬅ Slide IN depuis la droite */
+.slide-in-right {
+  animation: slideInRight 0.5s ease-in-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ➡ Slide IN depuis la gauche */
+.slide-in-left {
+  animation: slideInLeft 0.5s ease-in-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 🎛️ Style des boutons */
+button {
+  background-color: #66bb6a;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin: 5px;
+}
+
+/* Effet au survol */
+button:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+/* Désactiver les boutons inactifs */
+button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 📊 Boutons + / - */
+.counter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.counter-buttons button {
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.results-screen {
+  text-align: center;
+  padding: 20px;
+}
+
+.results-screen h2 {
+  color: #1b5e20;
+  font-size: 28px;
+}
+
+.results-screen p {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.results-screen button {
+  background-color: #388e3c;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.results-screen button:hover {
+  background-color: #2e7d32;
+  transform: scale(1.05);
+}

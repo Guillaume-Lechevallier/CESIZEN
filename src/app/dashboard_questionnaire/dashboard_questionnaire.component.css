@@ -1,0 +1,25 @@
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to bottom right, #f0f8ff, #e6f7ff);
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0, 128, 255, 0.1);
+}

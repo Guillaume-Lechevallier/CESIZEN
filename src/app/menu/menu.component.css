@@ -1,0 +1,50 @@
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  background-color: #f5f9f6;
+}
+
+.button-tile {
+  flex: 1 1 250px; /* min 250px, grandit si possible */
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: #d2ede6;
+  color: #2e4f4f;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background-color: #bae0d7;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  background-color: #a7d3ca;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .button-grid {
+    padding: 10px;
+  }
+}

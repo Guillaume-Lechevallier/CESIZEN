@@ -1,0 +1,43 @@
+<div
+  class="emotion-form"
+  [ngStyle]="{
+    backgroundColor: selectedEmotion ? '#' + selectedEmotion.couleur : 'white'
+  }"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Choisir une émotion</mat-label>
+<mat-select [(ngModel)]="selectedEmotion" (selectionChange)="onEmotionChange()">
+  <mat-option *ngFor="let emo of emotions" [value]="emo">
+    {{ emo.emotion_texte }}
+  </mat-option>
+</mat-select>
+
+  </mat-form-field>
+
+  <div *ngIf="selectedEmotion">
+    <mat-form-field appearance="fill">
+      <mat-label>Choisir une sous-émotion</mat-label>
+      <mat-select [(ngModel)]="selectedSousEmotion">
+        <mat-option *ngFor="let sous of sousEmotions" [value]="sous">
+          {{ sous.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="selectedSousEmotion">
+      <p><strong>Description :</strong> {{ selectedSousEmotion.description }}</p>
+    </div>
+    <div *ngIf="selectedSousEmotion" class="submit-section">
+<button
+  mat-raised-button
+  color="primary"
+  (click)="submitEmotion()"
+  [disabled]="!selectedSousEmotion"
+>
+  Envoyer cette émotion
+</button>
+
+</div>
+
+  </div>
+</div>

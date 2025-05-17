@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 *ngIf="!showResults">Questionnaire Zen 🍃</h2>
+
+  <!-- Affichage des étapes et des questions -->
+  <div *ngIf="!showResults">
+    <!-- Étapes -->
+    <div *ngIf="currentIndex < steps.length" [ngClass]="animationClass" class="question-container">
+      <p [innerHTML]="steps[currentIndex]"></p>
+    </div>
+
+    <!-- Questions -->
+    <div *ngIf="currentIndex >= steps.length" [ngClass]="animationClass" class="question-container">
+      <p><strong>Question {{ currentIndex - steps.length + 1 }} :</strong></p>
+      <p>{{ questions[currentIndex - steps.length]?.nom_question }}</p>
+
+      <div class="counter-buttons">
+        <button (click)="decreaseResponse()">-</button>
+        <span>{{ responses[currentIndex - steps.length] }}</span>
+        <button (click)="increaseResponse()">+</button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="buttons">
+      <button (click)="prev()" [disabled]="currentIndex === 0 || isTransitioning">⬅ Précédent</button>
+      <button (click)="next()" *ngIf="currentIndex < steps.length + questions.length - 1" [disabled]="isTransitioning">
+        Suivant ➡
+      </button>
+      <button (click)="finish()" *ngIf="currentIndex === steps.length + questions.length - 1">✅ Terminer</button>
+    </div>
+  </div>
+
+  <!-- Écran des résultats -->
+  <div *ngIf="showResults" class="results-screen">
+    <h2>Résultats :</h2>
+    <p [innerHTML]="finalScore"></p>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "name": "CaenTraining",
+  "short_name": "CaenTraining",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/index.html",
+  "icons": [
+    {
+      "src": "https://caentrainingentreprise.com:5000/public_files/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://caentrainingentreprise.com:5000/public_files/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+  {
+    "src": "https://caentrainingentreprise.com:5000/public_files/screenshotpc.png",
+    "sizes": "1920x1080",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "https://caentrainingentreprise.com:5000/public_files/screenshotphone.png",
+    "sizes": "1080x1920",
+    "type": "image/png"
+  }
+]
+}
+

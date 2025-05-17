@@ -1,0 +1,11 @@
+<div class="app-container">
+  <app-toolbar></app-toolbar>
+  <div class="vertical_stepper"></div>
+  <main class="app-content">
+    <!-- Contenu principal -->
+    <router-outlet></router-outlet>
+  </main>
+  <app-cookies *ngIf="isCookiesVisible" class="app-cookies-overlay"></app-cookies>
+  <div class="vertical_stepper"></div>
+  <app-footer></app-footer>
+</div>

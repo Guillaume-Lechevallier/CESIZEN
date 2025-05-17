@@ -1,0 +1,7 @@
+<div class="button-grid">
+  <div *ngFor="let button of buttons" class="button-tile">
+    <a [href]="button.lien" class="button" mat-raised-button>
+      {{ button.label }}
+    </a>
+  </div>
+</div>

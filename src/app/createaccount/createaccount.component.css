@@ -1,0 +1,61 @@
+/* Conteneur principal */
+.sidenav-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titre du formulaire */
+.form-title {
+  text-align: center;
+  margin: 2rem 0 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Contenu du formulaire */
+.form-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+/* Champs de formulaire */
+mat-form-field {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Ligne des boutons "Précédent / Suivant / Valider" */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Message d’aide pour le mot de passe */
+.password-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive : espace plus petit sur mobile */
+@media (max-width: 600px) {
+  .form-content {
+    padding: 0 1rem;
+  }
+
+  .button-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button-row button {
+    width: 100%;
+  }
+}

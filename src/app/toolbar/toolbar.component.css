@@ -1,0 +1,56 @@
+/* Style global pour la toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(70deg, #00be63, #00be63);
+
+  padding: 10px 20px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.custom-menu {
+  background: linear-gradient(70deg, #00be63, #00be63)
+}
+
+.toolbar-button_menu {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.logotoolbar {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive: Pour petits écrans */
+@media (max-width: 600px) {
+  .toolbar-title {
+    font-size: 18px;
+  }
+
+  .toolbar-button .label {
+    display: none; /* Cacher les labels pour gagner de la place */
+  }
+}

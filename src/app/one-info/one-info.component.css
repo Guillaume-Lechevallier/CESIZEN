@@ -1,0 +1,147 @@
+/* Styles de base pour les posts */
+.post {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 600px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.post:hover {
+  transform: scale(1.02);
+}
+
+/* Image de profil */
+.post img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* Nom de l'utilisateur */
+.post h3 {
+  font-size: 18px;
+  margin: 0;
+  color: #333;
+}
+
+/* Contenu du post */
+.post p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+  word-wrap: break-word;
+}
+
+/* Date */
+.post small {
+  color: #999;
+  font-size: 14px;
+  text-align: right;
+  display: block;
+}
+
+/* 🔹 Bouton interactif dynamique */
+.dynamic-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.dynamic-btn:hover {
+  background: #0056b3;
+}
+
+/* 📌 RESPONSIVE DESIGN */
+
+/* 📱 Petits écrans (mobiles) */
+@media (max-width: 600px) {
+  .post {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  .post h3 {
+    font-size: 16px;
+  }
+
+  .post p {
+    font-size: 14px;
+  }
+
+  .dynamic-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* 📏 Tablettes */
+@media (max-width: 900px) {
+  .post {
+    max-width: 80%;
+  }
+}
+
+/* 💻 Grands écrans */
+@media (min-width: 1200px) {
+  .post {
+    max-width: 700px;
+  }
+}
+
+.post-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.icon-btn {
+  color: #888; /* gris */
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.icon-btn:hover {
+  color: #555; /* un peu plus foncé au survol */
+}
+.sticky-button {
+  position: sticky;
+  top: 30px;
+  left: 20px;
+
+  background-color: #4CAF50; /* vert élégant */
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.sticky-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.icon-btn.favorite {
+  color: red;
+}

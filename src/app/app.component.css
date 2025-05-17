@@ -1,0 +1,31 @@
+.app-cookies-overlay {
+  position: fixed;
+  bottom: 20px; /* Positionne le composant à 20px du bas */
+  left: 50%;
+  transform: translateX(-50%); /* Centre horizontalement */
+  z-index: 1000; /* Plus grand que les autres pour le superposer */
+  background-color: #b6b1b1; /* Couleur pour le visuel, remplace si besoin */
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel : pour un effet */
+  border-radius: 5px; /* Optionnel : arrondir les coins */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+}
+
+
+.vertical_stepper {
+  height: 10px;
+}
+
+:host {
+  display: block;
+  height: 100%;
+}
