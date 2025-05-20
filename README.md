@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # CESIZEN - Application de Bien-être Mental
+=======
+# CESIZEN - Application de Bien-être Mental 
 
 ## Table des matières
 1. [Introduction](#introduction)
@@ -930,4 +933,8 @@ def cleanup_inactive_accounts():
 ### Contribution
 - [Guide de Contribution](https://github.com/votre-org/cesizen/CONTRIBUTING.md)
 - [Code de Conduite](https://github.com/votre-org/cesizen/CODE_OF_CONDUCT.md)
+<<<<<<< HEAD
 - [Changelog](https://github.com/votre-org/cesizen/CHANGELOG.md) 
+=======
+- [Changelog](https://github.com/votre-org/cesizen/CHANGELOG.md) 
+>>>>>>> 99001db364ca490e77ccc4a725c1105dced9ee46
