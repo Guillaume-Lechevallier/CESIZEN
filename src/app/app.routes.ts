@@ -15,6 +15,7 @@ import {QuestionnaireComponent} from './questionnaire/questionnaire.component';
 import {FavoriteInfoComponent} from './favorite-info/favorite-info.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {DeclarerUneEmotionComponent} from './declarer-une-emotion/declarer-une-emotion.component';
+import {SignalerUnProblemeComponent} from './signaler-un-probleme/signaler-un-probleme.component';
 
 export const routes: Routes = [
   {path: 'login', component: LoginpageComponent},
@@ -31,6 +32,7 @@ export const routes: Routes = [
   {path: 'mes_infos_favorites', component: FavoriteInfoComponent},
   {path: 'mon_tableau_de_bord', component: DashboardComponent},
   {path: 'declarer_une_emotion', component: DeclarerUneEmotionComponent},
+  {path: 'signal', component: SignalerUnProblemeComponent},
   {path: '**', component: AccueilComponent},
 ];
 RouterModule.forRoot(routes, {useHash: true})

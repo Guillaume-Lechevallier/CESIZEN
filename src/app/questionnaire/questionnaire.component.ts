@@ -48,6 +48,7 @@ fetchQuestions() {
       const hasHtml = data.find(item => item.retour_html !== undefined);
 
       if (hasScore && hasDate && hasHtml) {
+        console.log("aaa")
 
         this.finalScore = hasHtml.retour_html;
 
@@ -57,9 +58,37 @@ fetchQuestions() {
 
         console.log("Prochaine session:", hasDate.prochaine_date);
       } else {
+        console.log("aaa")
         // Sinon, on est sur un questionnaire normal
         this.questions = data;
         this.responses = new Array(this.questions.length).fill(0);
+        console.log(data)
+      }
+    });
+  }else{
+    console.log("aaaaaaaaaa");
+        this.http.get<any[]>(this.apiUrl).subscribe(data => {
+      // Vérifie si c'est une réponse de résultats déjà disponibles
+      const hasScore = data.find(item => item.score !== undefined);
+      const hasDate = data.find(item => item.prochaine_date !== undefined);
+      const hasHtml = data.find(item => item.retour_html !== undefined);
+
+      if (hasScore && hasDate && hasHtml) {
+        console.log("aaa")
+
+        this.finalScore = hasHtml.retour_html;
+
+        this.showResults = true;
+        // Tu peux stocker les autres valeurs si tu veux les afficher
+        console.log("Score:", hasScore.score);
+
+        console.log("Prochaine session:", hasDate.prochaine_date);
+      } else {
+        console.log("aaa")
+        // Sinon, on est sur un questionnaire normal
+        this.questions = data;
+        this.responses = new Array(this.questions.length).fill(0);
+        console.log(data)
       }
     });
   }

@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { API } from '../app.config';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import {MatCheckbox} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-createaccount',
@@ -19,7 +20,8 @@ import { DeviceDetectorService } from 'ngx-device-detector';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckbox
   ],
   templateUrl: './createaccount.component.html',
   styleUrls: ['./createaccount.component.css']
@@ -44,6 +46,8 @@ export class CreateaccountComponent implements OnInit {
       sex: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(emailRegex)]],
       password: ['', [Validators.required, Validators.pattern(passwordRegex)]],
+        accepttermsandconditions: [false, Validators.requiredTrue]
+
     });
   }
 
@@ -71,6 +75,9 @@ export class CreateaccountComponent implements OnInit {
   get password() {
     return this.accountForm.get('password')!;
   }
+    get accepttermsandconditions() {
+    return this.accountForm.get('password')!;
+  }
 
   submit() {
     if (this.accountForm.valid) {
@@ -80,7 +87,9 @@ export class CreateaccountComponent implements OnInit {
         email:this.email.value,
         dob: this.dob.value,
         sex: this.sex.value,
-        password: this.password.value
+        password: this.password.value,
+        accepttermsandconditions: [false, Validators.requiredTrue]  // <- ici
+
       };
 
       this.http.post(API + '/user/create_users', body).subscribe(

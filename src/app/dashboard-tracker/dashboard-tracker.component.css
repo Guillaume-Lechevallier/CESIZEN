@@ -23,3 +23,7 @@
   border-radius: 12px;
   box-shadow: inset 0 0 10px rgba(0, 128, 255, 0.1);
 }
+
+.chart-wrapper + .chart-wrapper {
+  margin-top: 32px;
+}

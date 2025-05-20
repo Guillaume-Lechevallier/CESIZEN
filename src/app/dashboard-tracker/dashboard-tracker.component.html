@@ -3,7 +3,7 @@
 
   <div class="chart-wrapper">
     <canvas baseChart
-            [data]="{ labels: pieChartLabels, datasets: [{ data: pieChartData }] }"
+            [data]="{ labels: pieChartLabels, datasets: pieChartData }"
             [type]="pieChartType"
             [options]="pieChartOptions"
             (chartClick)="onPieClick($event)">

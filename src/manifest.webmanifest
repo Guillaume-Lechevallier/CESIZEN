@@ -1,35 +1,55 @@
 {
-  "name": "CaenTraining",
-  "short_name": "CaenTraining",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "name": "CESIZEN",
+  "short_name": "CESIZEN",
+  "theme_color": "#00BE63",
+  "background_color": "#D9D9D9",
   "display": "standalone",
   "scope": "/",
   "start_url": "/index.html",
   "icons": [
     {
-      "src": "https://caentrainingentreprise.com:5000/public_files/192.png",
+      "src": "https://cesizenapi.caen-training-formations.com:5000/files/192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://caentrainingentreprise.com:5000/public_files/512.png",
+      "src": "https://cesizenapi.caen-training-formations.com:5000/files/512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "screenshots": [
   {
-    "src": "https://caentrainingentreprise.com:5000/public_files/screenshotpc.png",
+    "src": "https://cesizenapi.caen-training-formations.com:5000/files/screenshotpc1.png",
     "sizes": "1920x1080",
     "type": "image/png",
     "form_factor": "wide"
   },
   {
-    "src": "https://caentrainingentreprise.com:5000/public_files/screenshotphone.png",
+    "src": "https://cesizenapi.caen-training-formations.com:5000/files/screenshotpc2.png",
+    "sizes": "1920x1080",
+    "type": "image/png"
+  },  {
+    "src": "https://cesizenapi.caen-training-formations.com:5000/files/screenshotpc3.png",
+    "sizes": "1920x1080",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "https://cesizenapi.caen-training-formations.com:5000/files/screenshottel1.png",
     "sizes": "1080x1920",
     "type": "image/png"
-  }
+  },  {
+    "src": "https://cesizenapi.caen-training-formations.com:5000/files/screenshottel2.png",
+    "sizes": "1080x1920",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "https://cesizenapi.caen-training-formations.com:5000/files/screenshottel3.png",
+    "sizes": "1080x1920",
+    "type": "image/png"
+  },
 ]
 }
 
