@@ -1,4 +1,4 @@
-# CESIZEN - Application de Bien-être Mental
+# CESIZEN - Application de Bien-être Mental 
 
 ## Table des matières
 1. [Introduction](#introduction)
