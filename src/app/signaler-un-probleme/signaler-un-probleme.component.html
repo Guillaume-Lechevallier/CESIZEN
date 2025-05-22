@@ -1,0 +1,41 @@
+<div class="probleme-container">
+  <h2>Signaler un problème</h2>
+
+  <form #problemeForm="ngForm">
+    <div class="form-group">
+      <label for="titre">Titre du problème :</label>
+      <input
+        type="text"
+        id="titre"
+        name="titre"
+        [(ngModel)]="problemeTitre"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Décrivez votre problème :</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="problemeDescription"
+        required
+        rows="5"
+      ></textarea>
+    </div>
+
+    <div class="form-group checkbox">
+      <input
+        type="checkbox"
+        id="autorisation"
+        name="autorisation"
+        [(ngModel)]="autoriseConsultation"
+      />
+      <label for="autorisation">
+        J'autorise CESIZEN à consulter mes données relatives au problème afin de le résoudre.
+      </label>
+    </div>
+
+    <button type="submit" [disabled]="!problemeForm.form.valid">Envoyer</button>
+  </form>
+</div>
