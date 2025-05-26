@@ -13,7 +13,7 @@ def get_questions():
             connection = get_db_connection()
             cursor = connection.cursor(dictionary=True)
 
-            query = "SELECT id, nom_question FROM questionnaire"
+            query = "SELECT id, nom_question,points FROM questionnaire"
             cursor.execute(query)
             questions = cursor.fetchall()
 
@@ -67,7 +67,7 @@ def get_questions():
             connection = get_db_connection()
             cursor = connection.cursor(dictionary=True)
 
-            query = "SELECT id, nom_question FROM questionnaire"
+            query = "SELECT id, nom_question,points FROM questionnaire"
             cursor.execute(query)
             questions = cursor.fetchall()
 

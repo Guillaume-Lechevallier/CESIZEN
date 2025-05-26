@@ -246,7 +246,7 @@ DB_CONFIG = {
 
 #### Pool de Connexions
 ```python
-# api/utils/db.py
+# api/utils/admin_db.py
 from mysql.connector import pooling
 
 connection_pool = pooling.MySQLConnectionPool(

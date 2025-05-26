@@ -6,9 +6,13 @@ from api.routes.content.breathing_exercices import get_breathing_exercises
 from api.routes.content.information import get_information, get_one_information, get_all_favorite_info, act_on_favorite
 from api.routes.content.questionnaire import get_questions, submit_response
 from api.routes.content.tracker import get_emotion_list, post_emotion
-from api.routes.public import get_file, hello, check_server
+from api.routes.public import get_file, hello, check_server,get_icon_tab
 from api.routes.users import create_users, disconnect_and_desactivate_account, get_user_data
 from api.routes.users.dashboard import get_dashboard_questionnaire, get_dashboard_tracker
+from api.routes.admin.auth import admin_auth_by_token, admin_auth_by_password
+from api.routes.admin import admin_checkconnexion
+from api.routes.admin.content import post_exercise,put_exercise,delete_exercise,put_question,post_question,delete_question, get_all_informations, post_information, put_information, delete_information
+from api.routes.admin.stats import dashboard
 
 app = Flask(__name__)
 CORS(app)
@@ -33,6 +37,21 @@ app.register_blueprint(get_dashboard_questionnaire.get_dashboard_questionnaire_b
 app.register_blueprint(get_dashboard_tracker.get_dashboard_tracker_bp)
 app.register_blueprint(get_emotion_list.get_emotion_list_bp)
 app.register_blueprint(post_emotion.post_emotion_bp)
+app.register_blueprint(admin_auth_by_token.auth_by_token_bp)
+app.register_blueprint(admin_auth_by_password.auth_by_password_bp)
+app.register_blueprint(admin_checkconnexion.admin_checkconnexion_bp)
+app.register_blueprint(post_exercise.post_exercise_bp)
+app.register_blueprint(put_exercise.put_exercise_bp)
+app.register_blueprint(delete_exercise.delete_exercise_bp)
+app.register_blueprint(post_question.post_question_bp)
+app.register_blueprint(put_question.put_question_bp)
+app.register_blueprint(delete_question.delete_question_bp)
+app.register_blueprint(get_icon_tab.get_icon_tab_bp)
+app.register_blueprint(get_all_informations.get_all_informations_bp)
+app.register_blueprint(post_information.post_information_bp)
+app.register_blueprint(put_information.put_information_bp)
+app.register_blueprint(delete_information.delete_information_bp)
+app.register_blueprint(dashboard.dashboard_bp)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000, threaded=True)
