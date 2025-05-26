@@ -9,9 +9,10 @@
     Mon tableau de bord
   </div>
   <div class="toolbar-right">
-    <button (click)="navigate('/parametres')" class="toolbar-button">
-      <mat-icon>settings</mat-icon>
-    </button>
+    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">⚙️</button>
+    <mat-menu #menu="matMenu" class="custom-menu">
+      <button mat-button [routerLink]="'/deconnexion'" class="toolbar-button">Déconnexion</button>
+    </mat-menu>
   </div>
 </nav>
 

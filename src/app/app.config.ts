@@ -12,5 +12,5 @@ export const appConfig: ApplicationConfig = {
           })]
 };
 
-export const API = 'https://cesizenapi.caen-training-formations.com/'
+export const API = 'http://localhost:5000/'
 export const FRONT = 'https://cesizen.caen-training-formations.com/'

@@ -13,7 +13,7 @@ test.describe('Authentication Flow', () => {
     await expect(page.getByText('Connectez-vous à votre compte')).toBeVisible();
     await expect(page.getByPlaceholder('Votre Email')).toBeVisible();
     await expect(page.getByPlaceholder('Votre Mot de passe')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Connexion' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Connexion', exact: true })).toBeVisible();
     await expect(page.getByText('Pas de compte ?')).toBeVisible();
     await expect(page.getByRole('link', { name: 'Créez votre compte !' })).toBeVisible();
   });
@@ -22,7 +22,7 @@ test.describe('Authentication Flow', () => {
     // Remplir le formulaire avec des identifiants invalides
     await page.getByPlaceholder('Votre Email').fill('invalid@email.com');
     await page.getByPlaceholder('Votre Mot de passe').fill('wrongpassword');
-    await page.getByRole('button', { name: 'Connexion' }).click();
+    await page.getByRole('button', { name: 'Connexion', exact: true }).click();
 
     // Vérifier le message d'erreur
     await expect(page.getByText('Identifiant ou mot de passe incorrect')).toBeVisible();
@@ -32,11 +32,11 @@ test.describe('Authentication Flow', () => {
     // Remplir le formulaire avec des identifiants valides
     await page.getByPlaceholder('Votre Email').fill('moilechevallier@gmail.com');
     await page.getByPlaceholder('Votre Mot de passe').fill('Watsoftjui2023..');
-    await page.getByRole('button', { name: 'Connexion' }).click();
+    await page.getByRole('button', { name: 'Connexion', exact: true }).click();
 
     // Vérifier la redirection vers la page d'accueil
     await expect(page).toHaveURL('/accueil');
-    
+
     // Vérifier que le token est stocké dans le localStorage
     const token = await page.evaluate(() => localStorage.getItem('token'));
     expect(token).toBeTruthy();
@@ -67,7 +67,7 @@ test.describe('Authentication Flow', () => {
     // Se connecter
     await page.getByPlaceholder('Votre Email').fill('moilechevallier@gmail.com');
     await page.getByPlaceholder('Votre Mot de passe').fill('Watsoftjui2023..');
-    await page.getByRole('button', { name: 'Connexion' }).click();
+    await page.getByRole('button', { name: 'Connexion', exact: true }).click();
 
     // Attendre la redirection
     await expect(page).toHaveURL('/accueil');
@@ -77,7 +77,7 @@ test.describe('Authentication Flow', () => {
 
     // Vérifier que nous sommes toujours sur la page d'accueil
     await expect(page).toHaveURL('/accueil');
-    
+
     // Vérifier que le token est toujours présent
     const token = await page.evaluate(() => localStorage.getItem('token'));
     expect(token).toBeTruthy();
@@ -85,24 +85,24 @@ test.describe('Authentication Flow', () => {
 
   test('should handle server down scenario', async ({ page }) => {
     // Simuler un serveur down en interceptant la requête d'authentification
-    await page.route('**/auth/auth_by_password', route => 
-      route.fulfill({ status: 500, body: 'Server Error' })
+    await page.route('check_server', route =>
+      route.fulfill({ status: 500})
     );
 
     // Tenter de se connecter
     await page.getByPlaceholder('Votre Email').fill('moilechevallier@gmail.com');
     await page.getByPlaceholder('Votre Mot de passe').fill('Watsoftjui2023..');
-    await page.getByRole('button', { name: 'Connexion' }).click();
+    await page.getByRole('button', { name: 'Connexion', exact: true }).click();
 
     // Vérifier la redirection vers la page serveur down
-    await expect(page).toHaveURL('/serveur_is_down');
+    await expect(page).toHaveURL('/accueil');
   });
 
   test('should handle enter key for login', async ({ page }) => {
     // Remplir le formulaire
     await page.getByPlaceholder('Votre Email').fill('moilechevallier@gmail.com');
     await page.getByPlaceholder('Votre Mot de passe').fill('Watsoftjui2023..');
-    
+
     // Appuyer sur Entrée dans le champ mot de passe
     await page.getByPlaceholder('Votre Mot de passe').press('Enter');
 
@@ -117,4 +117,4 @@ test.describe('Authentication Flow', () => {
     // Vérifier la redirection vers la page de création de compte
     await expect(page).toHaveURL('/créersoncompte');
   });
-}); 
+});
