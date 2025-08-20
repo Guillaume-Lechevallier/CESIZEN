@@ -1,0 +1,109 @@
+<mat-sidenav-container class="sidenav-container">
+  <div *ngIf="isMobile">
+    <mat-sidenav class="sidenav" mode="side" opened></mat-sidenav>
+  </div>
+
+  <mat-sidenav-content>
+    <h2 class="form-title">Créer son compte</h2>
+    <div class="form-content">
+      <mat-vertical-stepper [linear]="false">
+
+        <!-- Étape 1 -->
+        <mat-step [stepControl]="firstName">
+          <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Prénom et Nom 🫵</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Prénom</mat-label>
+              <input matInput placeholder="Entrez votre prénom" formControlName="firstName" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input matInput placeholder="Entrez votre nom" formControlName="lastName" />
+            </mat-form-field>
+            <div class="button-row">
+              <button mat-button matStepperNext [disabled]="!firstName.valid || !lastName.valid">Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Étape 2 -->
+        <mat-step [stepControl]="dob">
+          <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Date de naissance 👨‍🦳</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Date de naissance</mat-label>
+              <input matInput type="date" formControlName="dob" />
+            </mat-form-field>
+            <div class="button-row">
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext [disabled]="!dob.valid">Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Étape 3 -->
+        <mat-step [stepControl]="sex">
+          <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Votre genre 😺</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Sexe</mat-label>
+              <input matInput placeholder="Homme, Femme ou Autre" formControlName="sex" />
+            </mat-form-field>
+            <div class="button-row">
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext [disabled]="!sex.valid">Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- Étape 4 -->
+        <mat-step [stepControl]="email">
+          <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Email ✉️</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Votre Email" formControlName="email" />
+            </mat-form-field>
+            <div class="button-row">
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext [disabled]="!email.valid">Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- Étape 5 -->
+        <mat-step [stepControl]="password">
+          <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Mot de passe 🔑</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Mot de passe</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Entrez un mot de passe" />
+            </mat-form-field>
+            <p class="password-hint">
+              Le mot de passe doit contenir au moins une majuscule, deux caractères spéciaux, deux chiffres et 12 caractères au total.
+            </p>
+            <div class="button-row">
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext [disabled]="!password.valid">Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+                <!-- Étape 6 : Trucs légaux -->
+<mat-step [stepControl]="accepttermsandconditions">
+  <form [formGroup]="accountForm">
+    <ng-template matStepLabel>Trucs légaux 😉</ng-template>
+
+    <mat-checkbox formControlName="accepttermsandconditions">
+      J'accepte les termes et conditions d'utilisation
+    </mat-checkbox>
+
+    <div class="button-row">
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button (click)="submit()" [disabled]="!accepttermsandconditions.value">Créer un compte</button>
+    </div>
+  </form>
+</mat-step>
+
+
+      </mat-vertical-stepper>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

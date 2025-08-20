@@ -1,0 +1,36 @@
+<div class="container">
+  <!-- Étape 1 : Sélection de l'exercice -->
+  <div *ngIf="step === 1">
+    <h2>Choisissez un exercice :</h2>
+    <label for="exercise-select">Exercice :</label>
+    <select [(ngModel)]="selectedExercise" [disabled]="!exercises.length" id="exercise-select">
+      <option *ngFor="let ex of exercises" [ngValue]="ex">{{ ex.name }}</option>
+    </select>
+    <button (click)="proceedToExercise()">Valider</button>
+  </div>
+
+  <!-- Étape 2 : Exercice de respiration -->
+  <div *ngIf="step === 2">
+    <h2>{{ selectedExercise?.name || 'Exercice' }}</h2>
+
+    <div *ngIf="!isHidden" class="breathing-container">
+      <!-- Cercles extérieurs (respiration indépendante) -->
+      <div class="circle outer-layer-1"></div>
+      <div class="circle outer-layer-2"></div>
+
+      <!-- Cercles intérieurs (liés à l'exercice) -->
+      <div [ngStyle]="{'width.px': innerCircleSize1, 'height.px': innerCircleSize1}" class="circle inner-layer-1"></div>
+      <div [ngStyle]="{'width.px': innerCircleSize2, 'height.px': innerCircleSize2}" class="circle inner-layer-2"></div>
+      <div [ngStyle]="{'width.px': innerCircleSize3, 'height.px': innerCircleSize3}" class="circle inner-layer-3"></div>
+    </div>
+
+    <p class="phase-text">{{ breathingPhase }}</p>
+
+    <div class="button-group">
+            <button (click)="returnToSelection()" *ngIf="!isRunning">Retour</button>
+
+      <button (click)="startBreathing()" *ngIf="!isRunning">Démarrer</button>
+      <button (click)="stopBreathing()" *ngIf="isRunning">Arrêter</button>
+    </div>
+  </div>
+</div>

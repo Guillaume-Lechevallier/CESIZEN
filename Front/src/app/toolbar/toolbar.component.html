@@ -1,0 +1,29 @@
+<nav *ngIf="connected" class="toolbar">
+  <div (click)="navigate('/accueil')" class="toolbar-title">
+    <img [src]="logosrc" alt="Logo" class="logotoolbar">
+  </div>
+  <div (click)="navigate('/exercicederespiration')" class="toolbar-button_menu">
+    Mes exercices de respirations
+  </div>
+  <div (click)="navigate('/mon_tableau_de_bord')" class="toolbar-button_menu">
+    Mon tableau de bord
+  </div>
+  <div class="toolbar-right">
+    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">⚙️</button>
+    <mat-menu #menu="matMenu" class="custom-menu">
+      <button mat-button [routerLink]="'/deconnexion'" class="toolbar-button">Déconnexion</button>
+    </mat-menu>
+  </div>
+</nav>
+
+<nav *ngIf="!connected" class="toolbar">
+  <div (click)="navigate('/accueil')" class="toolbar-title">
+    <img [src]="logosrc" alt="Logo" class="logotoolbar">
+  </div>
+
+  <div class="toolbar-right">
+    <button (click)="navigate('/login')" class="toolbar-button">
+      <span class="icon">Connexion 🚶‍♂️</span>
+    </button>
+  </div>
+</nav>

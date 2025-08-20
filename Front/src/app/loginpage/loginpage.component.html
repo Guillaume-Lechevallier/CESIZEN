@@ -1,0 +1,27 @@
+<title>Connexion</title>
+<div class="connexion">
+  <img [src]="logosrc"
+       class="logoconnexion">
+  <div class="form">
+    <p class="form-title">Connectez-vous à votre compte</p>
+
+    <div class="input-container">
+      <input [(ngModel)]="login" id="loginInput" placeholder="Votre Email" type="email">
+    </div>
+
+    <div class="input-container">
+      <input (keyup.enter)="valider()" [(ngModel)]="password" id="passwordInput" placeholder="Votre Mot de passe"
+             type="password">
+    </div>
+
+    <button (click)="valider()" class="submit" type="submit">
+      Connexion
+    </button>
+    <p class="hidden" id="motdepasseincorrect">Identifiant ou mot de passe incorrect</p>
+    <p class="hidden" id="sessionexpired">Session expirée, veuillez vous reconnecter</p>
+    <p class="signup-link">
+      Pas de compte ?<br>
+      <a href="/créersoncompte">Créez votre compte !</a>
+    </p>
+  </div>
+</div>

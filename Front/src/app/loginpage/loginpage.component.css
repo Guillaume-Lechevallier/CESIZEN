@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box; /* Important pour éviter les débordements avec paddings/marges */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.connexion {
+  display: flex;
+  flex-direction: row; /* Par défaut, l'image est à gauche */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0; /* Commence invisible */
+}
+
+.logoconnexion {
+  width: 20%;
+  align-items: center;
+}
+
+.form {
+  background-color: #ffffff;
+  display: flex; /* Flexbox pour centrer le contenu verticalement */
+  flex-direction: column; /* Les éléments sont empilés verticalement */
+  padding: 1rem;
+  max-width: 30%; /* Sur écran large, la form occupe 50% de la largeur */
+  width: 100%; /* Sur petits écrans, elle prend toute la largeur possible */
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+  align-items: center; /* Centrer le contenu horizontalement */
+}
+
+.form-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000000;
+}
+
+.input-container {
+  position: relative;
+  width: 100%; /* Prend toute la largeur du parent .form */
+  margin: 1vh 0;
+}
+
+.input-container input {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 100%; /* L'input prend toute la largeur disponible */
+  max-width: 100%; /* Limiter la largeur à 100% pour éviter les débordements */
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.submit {
+  padding: 0.75rem 1.25rem;
+  background-color: #e12d2d;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  width: 100%; /* Le bouton prend toute la largeur */
+  max-width: 100%; /* S'assure que le bouton ne déborde pas */
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2vh; /* Ajout d'un espace sous le bouton */
+}
+
+.submit:hover {
+  background-color: #ff1b1b;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.signup-link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 990px) {
+  .connexion {
+    flex-direction: column; /* Place le logo au-dessus */
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center; /* Centre les éléments verticalement */
+  }
+
+  .logoconnexion {
+    width: 50%; /* Ajuste la taille du logo pour les petits écrans */
+    margin-bottom: 20px; /* Espace entre le logo et le formulaire */
+  }
+
+  .form {
+    width: 90%; /* Sur petit écran, le formulaire prend presque toute la largeur */
+    max-width: 100%;
+    margin: 0; /* Centré sans marge latérale */
+    transform: none; /* Retire la translation Y */
+    margin-top: 0; /* Supprime le déplacement vers le bas */
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  color: #e80b0b;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
