@@ -1,0 +1,17 @@
+jenkins:
+  systemMessage: "Configured by JCasC"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: ${JENKINS_ADMIN_ID}
+          password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+plugins:
+  required:
+    - workflow-aggregator
+    - docker-workflow
+    - credentials
+    - git
