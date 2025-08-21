@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - private
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 10
+  back:
+    build: ./Back
+    env_file: .env
+    volumes:
+      - ./scripts:/scripts:ro
+    command: ["/scripts/wait-for.sh", "db:3306", "--", "gunicorn", "-c", "gunicorn.conf.py", "app:app"]
+    networks:
+      - private
+    depends_on:
+      db:
+        condition: service_healthy
+  front:
+    build: ./Front
+    networks:
+      - public
+      - private
+    depends_on:
+      back:
+        condition: service_started
+    ports:
+      - "80:80"
+networks:
+  public:
+  private:
+volumes:
+  db_data:

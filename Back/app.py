@@ -1,21 +1,22 @@
 from flask import Flask
 from flask_cors import CORS
+from api.config.config import Config
 
 from api.routes.auth import auth_by_token, auth_by_password
 from api.routes.content.breathing_exercices import get_breathing_exercises
 from api.routes.content.information import get_information, get_one_information, get_all_favorite_info, act_on_favorite
 from api.routes.content.questionnaire import get_questions, submit_response
 from api.routes.content.tracker import get_emotion_list, post_emotion
-from api.routes.public import get_file, hello, check_server,get_icon_tab
+from api.routes.public import get_file, hello, check_server, get_icon_tab
 from api.routes.users import create_users, disconnect_and_desactivate_account, get_user_data
 from api.routes.users.dashboard import get_dashboard_questionnaire, get_dashboard_tracker
 from api.routes.admin.auth import admin_auth_by_token, admin_auth_by_password
 from api.routes.admin import admin_checkconnexion
-from api.routes.admin.content import post_exercise,put_exercise,delete_exercise,put_question,post_question,delete_question, get_all_informations, post_information, put_information, delete_information
+from api.routes.admin.content import post_exercise, put_exercise, delete_exercise, put_question, post_question, delete_question, get_all_informations, post_information, put_information, delete_information
 from api.routes.admin.stats import dashboard
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": Config.CORS_ORIGINS.split(',')}})
 
 # Enregistrement des blueprints
 app.register_blueprint(auth_by_token.auth_by_token_bp)

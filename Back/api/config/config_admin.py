@@ -1,22 +1,22 @@
 import os
 
+
 class Config_admin:
-    # Configuration de la base de données
     DB_CONFIG = {
-        'host': 'localhost',
-        'user': 'root',
-        'password': 'root',
-        'database': 'cesizen'
+        'host': os.getenv('DB_HOST', 'localhost'),
+        'user': os.getenv('DB_USER', 'root'),
+        'password': os.getenv('DB_PASS', 'root'),
+        'database': os.getenv('DB_NAME', 'cesizen'),
+        'port': int(os.getenv('DB_PORT', 3306)),
     }
-    
-    # Configuration email
+
     EMAIL_CONFIG = {
-        'from_address': 'informatiquecaentraining@gmail.com',
-        'smtp_server': 'smtp.gmail.com',
-        'smtp_port': 587,
-        'login': 'informatiquecaentraining@gmail.com',
-        'password': 'mhdp fsgw lbrc dhwb'
+        'from_address': os.getenv('EMAIL_FROM', 'informatiquecaentraining@gmail.com'),
+        'smtp_server': os.getenv('SMTP_SERVER', 'smtp.gmail.com'),
+        'smtp_port': int(os.getenv('SMTP_PORT', 587)),
+        'login': os.getenv('SMTP_LOGIN', 'informatiquecaentraining@gmail.com'),
+        'password': os.getenv('SMTP_PASSWORD', 'mhdp fsgw lbrc dhwb'),
     }
-    
-    # Autres configurations
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key-123' 
+
+    SECRET_KEY = os.getenv('SECRET_KEY', 'dev-key-123')
+    CORS_ORIGINS = os.getenv('CORS_ORIGINS', '*')
