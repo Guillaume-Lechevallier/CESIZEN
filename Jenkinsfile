@@ -53,4 +53,13 @@ pipeline {
       sh 'docker image prune -f || true'
     }
   }
+  stage('Restart prod containers') {
+    steps {
+        sh '''
+            set -eux
+            cd $WORKSPACE
+            docker compose -f docker-compose.prod.yml restart
+        '''
+    }
+}
 }
