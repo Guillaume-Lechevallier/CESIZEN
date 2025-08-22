@@ -14,9 +14,21 @@ from api.routes.admin.auth import admin_auth_by_token, admin_auth_by_password
 from api.routes.admin import admin_checkconnexion
 from api.routes.admin.content import post_exercise, put_exercise, delete_exercise, put_question, post_question, delete_question, get_all_informations, post_information, put_information, delete_information
 from api.routes.admin.stats import dashboard
+import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": Config.CORS_ORIGINS.split(',')}})
+# Origines autorisées via env (.env → CORS_ORIGINS)
+allowed = os.getenv("CORS_ORIGINS", "http://localhost:4200,http://127.0.0.1:4200")
+allowed_list = [o.strip() for o in allowed.split(",") if o.strip()]
+
+CORS(
+    app,
+    resources={r"/*": {"origins": allowed_list}},
+    supports_credentials=True,                      # mets False si tu n'utilises pas de cookies/Authorization
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    max_age=86400
+)
 
 # Enregistrement des blueprints
 app.register_blueprint(auth_by_token.auth_by_token_bp)

@@ -1,13 +1,54 @@
-version: '3.8'
+# docker-compose.prod.yml
+# Prod = images déjà construites (par Jenkins) :
+# - cesizen-front:latest  (Angular build + servi par NGINX)
+# - cesizen-back:latest   (Flask + Gunicorn)
+#
+# DB: hors Docker sur le host -> on pointe vers host.docker.internal
+
 services:
-  jenkins:
-    build: ./jenkins
+  front:
+    image: cesizen-front:latest            # ou <dockerhub_user>/cesizen-front:latest
+    restart: unless-stopped
+    depends_on:
+      - back
     ports:
-      - "8080:8080"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "80:80"                            # expose le site en HTTP (ajoute 443 si tu termines TLS ici)
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - public
+      - private
+
+  back:
+    image: cesizen-back:latest             # ou <dockerhub_user>/cesizen-back:latest
+    restart: unless-stopped
+    env_file: .env                         # DB_HOST/DB_USER/DB_PASS/DB_NAME/CORS_ORIGINS...
     environment:
-      - CASC_JENKINS_CONFIG=/var/jenkins_home/casc.yaml
-volumes:
-  jenkins_home:
+      FLASK_ENV: production
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://ton-domaine.fr}
+      GUNICORN_WORKERS: ${GUNICORN_WORKERS:-4}
+      GUNICORN_THREADS: ${GUNICORN_THREADS:-2}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # permet d'atteindre la DB du host
+    expose:
+      - "5000"                              # dispo seulement sur le réseau privé
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:5000/healthz || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - private
+
+networks:
+  public: {}
+  private: {}
+
