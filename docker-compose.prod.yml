@@ -1,43 +1,29 @@
 version: '3.8'
 services:
-  db:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASS}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - private
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 10
   back:
     build: ./Back
-    env_file: .env
+    command: flask run --host=0.0.0.0 --port=5000
     volumes:
-      - ./scripts:/scripts:ro
-    command: ["/scripts/wait-for.sh", "db:3306", "--", "gunicorn", "-c", "gunicorn.conf.py", "app:app"]
-    networks:
-      - private
-    depends_on:
-      db:
-        condition: service_healthy
-  front:
-    build: ./Front
-    networks:
-      - public
-      - private
-    depends_on:
-      back:
-        condition: service_started
+      - ./Back:/app
+    env_file: .env
     ports:
-      - "80:80"
-networks:
-  public:
-  private:
-volumes:
-  db_data:
+      - "5000:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+  front:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./Front:/app
+    command: sh -c "npm ci --legacy-peer-deps && npx ng serve --host 0.0.0.0 --port 4200"
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
