@@ -45,15 +45,7 @@ pipeline {
         '''
       }
     }
-  }
-
-  post {
-    always {
-      junit allowEmptyResults: true, testResults: 'Back/**/junit*.xml, Front/**/junit*.xml'
-      sh 'docker image prune -f || true'
-    }
-  }
-  stage('Restart prod containers') {
+      stage('Restart prod containers') {
     steps {
         sh '''
             set -eux
@@ -62,4 +54,13 @@ pipeline {
         '''
     }
 }
+  }
+
+  post {
+    always {
+      junit allowEmptyResults: true, testResults: 'Back/**/junit*.xml, Front/**/junit*.xml'
+      sh 'docker image prune -f || true'
+    }
+  }
+
 }
