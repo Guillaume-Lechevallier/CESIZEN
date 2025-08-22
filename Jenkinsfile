@@ -24,16 +24,17 @@ pipeline {
       }
     }
 
-    stage('Build Docker images') {
-      steps {
-        sh '''
-          set -eux
-          docker --version
-          docker build -t ${APP_NAME}-front:latest -f Front/Dockerfile .
-          docker build -t ${APP_NAME}-back:latest  -f Back/Dockerfile  .
-        '''
-      }
+  stage('Build Docker images') {
+    steps {
+      sh '''
+        set -eux
+        docker build -t ${APP_NAME}-front:latest -f Front/Dockerfile .
+        # NOTE: contexte = Back/
+        docker build -t ${APP_NAME}-back:latest  -f Back/Dockerfile Back
+      '''
     }
+  }
+
 
     stage('Deploy (compose prod local)') {
       when { branch 'main' }
